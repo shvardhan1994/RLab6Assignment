@@ -95,6 +95,18 @@ knapsack_objects <-
 system.time(greedy_knapsack(knapsack_objects[1:1000000,],3500))
 ```
 
+## Profiling and optimizing the code
+
+In this section knapsack_dynamic function is profiled using "microbenchmark" library and understand the performance of the code. Microbenchmark function runs the same code for given input number of objects for specific number of times and outputs the mean time taken by the algorithm for n number of objects.
+
+```{r profiling knapsack_dynamic function,eval=TRUE}
+library(microbenchmark)
+microbenchmark::microbenchmark(knapsack_dynamic(x = knapsack_objects[1:50,], W = 3500,fast = FALSE),times = 5)
+
+```
+
+The above result displays runtime of running 50 objects for 5 times corresponding mean, median time taken in running the same. The below following are the methods to optimize the code using Rcpp method or parallelization method. The same example is used at the end of below section after implementing the Rcpp method.
+
 ## Implement the fast version of the function using Rcpp
 
 One way of improving your code would be to run some parts of the code using Rcpp and writing this part of the code using C++. 
@@ -102,16 +114,26 @@ We have used Rcpp optimization method for knapsack_dynamic function and to impro
 The below code shows a comparison when fast argument is set FALSE and TRUE.
 
 ```{r Rcpp implemetation for knapsack_dynamic function, eval=TRUE}
-knapsack_dynamic(x = knapsack_objects[1:20,], W = 3500,fast = FALSE)
+knapsack_dynamic(x = knapsack_objects[1:50,], W = 3500,fast = FALSE)
 system.time(knapsack_dynamic(x = knapsack_objects[1:20,], W = 2000, fast = FALSE))
 
-knapsack_dynamic(x = knapsack_objects[1:20,], W = 3500,fast = TRUE)
+knapsack_dynamic(x = knapsack_objects[1:50,], W = 3500,fast = TRUE)
 system.time(knapsack_dynamic(x = knapsack_objects[1:20,], W = 2000, fast = TRUE))
+
 ```
+
+Profiling of dynamic_knapsack code after implementing Rcpp
+
+```{r profiling after Rcpp implementation, eval=TRUE}
+library(microbenchmark)
+microbenchmark::microbenchmark(knapsack_dynamic(x = knapsack_objects[1:50,], W = 3500,fast = TRUE),times = 5)
+```
+
+
 
 Question: What performance gain could you get by using Rcpp and C++?
 
-By successfully implementing Rcpp and c++ code in one chunk of the knapsack_dynamic function, the user time has reduced significantly. C++ code was used to execute a nested loop to create a matrix which is more faster than R loops. The above example shows by implementation and comparison before and anfter using the Rcpp and c++.
+By successfully implementing Rcpp and c++ code in one chunk of the knapsack_dynamic function, the user run time has reduced significantly. C++ code was used to execute a nested loop to create a matrix which is more faster than R loops. The above example shows by implementation and comparison before and anfter using the Rcpp and c++.
 
 
 

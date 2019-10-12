@@ -18,4 +18,4 @@ VignetteBuilder: knitr
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp
+    Rcpp, microbenchmark
