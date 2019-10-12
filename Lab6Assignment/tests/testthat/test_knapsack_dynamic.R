@@ -12,7 +12,7 @@ knapsack_objects <- data.frame(
 )
 
 test_that("Correct object is returned", {
-  expect_silent(bfk <- knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500))
+  expect_silent(bfk <- knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500, fast=TRUE))
   expect_named(bfk, c("value", "elements"))
 })
 
@@ -40,5 +40,7 @@ test_that("Function return correct results.", {
   expect_true(all(round(bfk$elements) %in% c(3, 8)))
   
   st <- system.time(bfk <- knapsack_dynamic(x = knapsack_objects[1:16,], W = 2000))
+  expect_true(as.numeric(st)[2] >= 0.00)
+  st2 <- system.time(bfk2 <- knapsack_dynamic(x = knapsack_objects[1:16,], W = 2000, fast = TRUE))
   expect_true(as.numeric(st)[2] >= 0.00)
 })

@@ -4,12 +4,14 @@
 \alias{knapsack_dynamic}
 \title{Dynamic programming algorithm for the knapsack problem}
 \usage{
-knapsack_dynamic(x, W)
+knapsack_dynamic(x, W, fast = FALSE)
 }
 \arguments{
 \item{x}{is a data.frame containing variables 'w' and 'v', weights and values}
 
 \item{W}{is the total size of the knapsack}
+
+\item{fast}{is set to TRUE when running Rcpp method to optimize the code}
 }
 \value{
 A list with maximum value and weights adding up to the maximum value

@@ -7,6 +7,15 @@ Author: Harshavardhan Subramanian
 Maintainer: Harshavardhan Subramanian <shvardhan1994@gmail.com>
 Description: This package is created to study the effects of algorithms with different computional complexity and how to speedup R code. The package will contain three different functions for solving what is called the knapsack problem.
 License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 2.10)
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp

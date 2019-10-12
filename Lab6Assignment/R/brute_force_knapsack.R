@@ -25,16 +25,16 @@ for(i in 1:(2^(len) -1))
     weight <- 0
     value <- 0
 
-    for(j in 1:length(index))
-    {
+    #for(j in 1:length(index))
+    #{
       
-      weight <- weight + x$w[index[j]]
-      #print(weight)
-      value <- value + x$v[index[j]]
-      #print(i,j)
-      #print(value)
+      #weight <- weight + x$w[index[j]]
+      weight <- sum(x[index,"w"])
+      #value <- value + x$v[index[j]]
+      value <- sum(x[index,"v"])
+    
       
-    }
+    #}
     
     if(weight <= W && temp_value < value)
     {
@@ -49,4 +49,5 @@ for(i in 1:(2^(len) -1))
 } 
   
 }
-
+#system.time(t <-brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000, parallel = FALSE))
+#system.time(t1 <- brute_force_knapsack(x = knapsack_objects[1:12,], W = 2000))

@@ -9,4 +9,11 @@ Description: This package is created to study the effects of algorithms with dif
 License: MIT + file LICENSE
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp

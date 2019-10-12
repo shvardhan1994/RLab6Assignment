@@ -2,4 +2,7 @@
 
 export(brute_force_knapsack)
 export(greedy_knapsack)
+export(knapSackdynamic_cpp)
 export(knapsack_dynamic)
+importFrom(Rcpp,sourceCpp)
+useDynLib(Lab6Assignment, .registration = TRUE)
